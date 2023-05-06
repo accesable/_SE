@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MobilePhoneDistributor_Web.Models.Receipt>
+
+@{
+    ViewBag.Title = "Receipt";
+}
+
+<h2>Receipts List </h2>
+
+<p>
+    @Html.ActionLink("Create New Receipt", "Create",null,new {@class="btn btn-primary"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Staff.StaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceiptDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Staff.StaffId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceiptDate)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.ReceiptId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ReceiptId })|
+        </td>
+    </tr>
+}
+
+</table>

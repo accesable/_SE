@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .navbar {
+            background-color: #8BC6EC;
+            background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+        }
+    </style>
+</head>
+
+<body>
+    @if ((string)Session["role"] == "Staff")
+    {
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark ">
+            <div class="container">
+                @Html.ActionLink("Silicone Supplier", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li>@Html.ActionLink("Phone Model Managament", "Index", "PhoneModels", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Receipt Managament", "Index", "Receipts", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Agent Orders", "Index", "Orders", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Delivery Notes", "Index", "DeliveryNotes", null, new { @class = "nav-link" })</li>
+                    </ul>
+                    @Html.Partial("_loginPartial")
+                </div>
+            </div>
+        </nav>
+    }
+    else
+    {
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark ">
+            <div class="container">
+                @Html.ActionLink("Silicone Supplier", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Avaliable Phone Model", "Index", "PhoneModels", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Orders", "Index", "Orders", new { id = Session["user"] }, new { @class = "nav-link" })</li>
+
+                    </ul>
+                    @Html.Partial("_loginPartial")
+                </div>
+            </div>
+        </nav>
+    }
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr/>
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Silicone Supplier &reg;  Blackrock comp</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+﻿
+@if (Session["user"] != null && Session["role"] as string == "Staff")
+{
+
+    <ul class="navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + Session["user_fullname"], null, null, htmlAttributes: new { @class = "nav-link" })
+        </li>
+        <li>@Html.ActionLink("Register For A User", "Register", "User", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
+        <li>@Html.ActionLink("Log Out", "Logout", "Staffs", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+    </ul>
+}
+else if (Session["user"] != null && Session["role"] as string == "Agent")
+{
+    <ul class="navbar-nav navbar-right">
+        <li>@Html.ActionLink("Order Cart", "Index", "OrderCart", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+        <li >
+            @Html.ActionLink("Hello " + Session["user_fullname"],null,null, htmlAttributes: new { @class = "nav-link" })
+        </li>
+        <li>@Html.ActionLink("Log Out", "Logout", "Staffs", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+    </ul>
+}
+else
+{
+
+    <ul class="navbar-nav navbar-right">
+        <li>@Html.ActionLink("Login", "Index", "User", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
+    </ul>
+}

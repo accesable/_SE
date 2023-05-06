@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MobilePhoneDistributor_Web.Models.DeliveryNote>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Delivery Notes</h2>
+
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Order.OrderId)</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Order.OrderId)</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order.OrderStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryDate)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.DeliveryNoteId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DeliveryNoteId })
+        </td>
+    </tr>
+}
+
+</table>
